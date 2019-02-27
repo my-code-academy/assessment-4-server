@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   forms.getAllForms = () => forms.findAll({
-    attributes: ['name', 'responseID', 'field', 'fieldValue'],
+    attributes: ['responseID', 'field', 'fieldValue'],
+  });
+
+  forms.getAllResponsesOfAForm = formName => forms.findAll({
+    attributes: ['responseID', 'field', 'fieldValue'],
+    where: {
+      name: formName,
+    },
   });
 
 
