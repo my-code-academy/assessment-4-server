@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     fieldValue: DataTypes.STRING,
   }, {});
 
+  forms.getAllForms = () => forms.findAll({
+    attributes: ['name', 'field', 'fieldValue'],
+  });
 
   forms.addForm = (formData) => {
     const formName = formData.name;
