@@ -1,5 +1,6 @@
 const hapi = require('hapi');
 const addFormRoute = require('./routes/addForm.route');
+const getAllFormsRoute = require('./routes/getAllForms.route');
 
 const server = hapi.server({
   port: 7777,
@@ -12,6 +13,7 @@ const init = async () => {
 };
 
 server.route(addFormRoute);
+server.route(getAllFormsRoute);
 
 process.on('unhandledRejection', (err) => {
   console.log(err);

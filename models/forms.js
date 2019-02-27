@@ -1,4 +1,5 @@
 
+
 module.exports = (sequelize, DataTypes) => {
   const forms = sequelize.define('forms', {
     name: DataTypes.STRING,
@@ -8,26 +9,32 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   forms.getAllForms = () => forms.findAll({
-    attributes: ['name', 'responseNumber', 'field', 'fieldValue'],
+    attributes: ['name', 'responseID', 'field', 'fieldValue'],
+  });
+
+
+  const addRowToFormsTable = (formName, responseID, field, fieldValue) => forms.findOrCreate({
+    where: {
+      name: formName, responseID, field, fieldValue,
+    },
+  }).spread((userResult, created) => {
+    if (created) {
+      return 'created successfully';
+    }
+    return 'Already exists';
   });
 
   forms.addForm = (formData) => {
     const formName = formData.name;
+    const { responseID } = formData;
+    let insertionStatus = '';
     Object.keys(formData).forEach((field) => {
       const fieldValue = formData[field];
-      if (field !== 'name') {
-        forms.findOrCreate({
-          where: {
-            name: formName, field, fieldValue,
-          },
-        }).spread((userResult, created) => {
-          if (created) {
-            return 'created successfully';
-          }
-          return 'Already exists';
-        });
+      if (field !== 'name' && field !== 'responseID') {
+        insertionStatus = addRowToFormsTable(formName, responseID, field, fieldValue);
       }
     });
+    return insertionStatus;
   };
 
   forms.associate = function (models) {

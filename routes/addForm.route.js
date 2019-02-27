@@ -9,10 +9,10 @@ module.exports = [{
       additionalHeaders: ['cache-control', 'x-requested-with'],
     },
   },
-  handler: (request, h) => {
+  handler: async (request, h) => {
     const formData = request.payload;
     // console.log(request.payload);
-    model.forms.addForm(formData);
-    return 'added form';
+    const insertionStatus = await model.forms.addForm(formData);
+    return insertionStatus;
   },
 }];
