@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "Hemant_Sriteja",
+    "password": null,
+    "database": "forms_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "Hemant_Sriteja",
+    "password": null,
+    "database": "forms_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "Hemant_Sriteja",
+    "password": null,
+    "database": "forms_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
