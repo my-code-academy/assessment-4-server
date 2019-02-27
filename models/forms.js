@@ -2,12 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
   const forms = sequelize.define('forms', {
     name: DataTypes.STRING,
+    responseID: DataTypes.STRING,
     field: DataTypes.STRING,
     fieldValue: DataTypes.STRING,
   }, {});
 
   forms.getAllForms = () => forms.findAll({
-    attributes: ['name', 'field', 'fieldValue'],
+    attributes: ['name', 'responseNumber', 'field', 'fieldValue'],
   });
 
   forms.addForm = (formData) => {

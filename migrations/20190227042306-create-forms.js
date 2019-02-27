@@ -9,6 +9,9 @@ module.exports = {
     name: {
       type: Sequelize.STRING,
     },
+    responseID: {
+      type: Sequelize.STRING,
+    },
     field: {
       type: Sequelize.STRING,
     },
